@@ -27,6 +27,28 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function as described above.
+
+    // The solution with a loop. Check out `transformer_iter` for a version
+    // with iterators.
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        let mut output = Vec::new();
+
+        for (string, command) in input {
+            // Create the new string.
+            let new_string = match command {
+                Command::Uppercase => string.to_uppercase(),
+                Command::Trim => string.trim().to_string(),
+                Command::Append(n) => string + &"bar".repeat(n),
+            };
+
+            // Push the new string to the output vector.
+            output.push(new_string);
+        }
+
+        output
+    }
+
+    /* My original solution
     pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> 
     { 
         let mut output: Vec<String> = vec![];
@@ -39,6 +61,7 @@ mod my_module {
         }
         output
     }
+    */
 }
 
 fn main() {
